@@ -1,0 +1,67 @@
+.about {
+  color: var(--about-fg-color);
+  text-align: center;
+
+  .content {
+    max-width: @ABOUT_CONTENT_MAX_WIDTH;
+    margin: 20px 15px 40px;
+    text-align: left;
+    font-size: 16px;
+
+    a {
+      color: var(--about-link-color);
+    }
+
+    a:visited {
+      color: var(--about-link-visited-color);
+    }
+  }
+
+  .content > div {
+    margin: 12px auto;
+  }
+
+  .profile-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .profile-link {
+    margin-right: 8px;
+  }
+
+  .support > div {
+    margin: 10px auto;
+  }
+
+  .support .crypto {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .support .crypto .address {
+    width: 100%;
+    margin-left: 10px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: var(--about-crypto-address-bg-color);
+    font-family: monospace;
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 599px) {
+  .about .support .crypto .address {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 499px) {
+  .about .support .crypto .address {
+    font-size: 12px;
+  }
+}

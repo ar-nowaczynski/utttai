@@ -1,0 +1,484 @@
+.rules {
+  width: @RULES_MAX_WIDTH;
+  color: var(--rules-fg-color);
+  text-align: center;
+
+  .content {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 20px auto 60px;
+  }
+}
+
+.rule-section {
+  margin: 20px auto 40px;
+}
+
+.rule-description {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 20px auto 14px;
+  padding: 0 30px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.rule-examples {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.rules {
+  .game {
+    width: @SUPERGAME_MOBILE_SIZE_48;
+  }
+
+  .board {
+    margin: 6px auto 10px;
+  }
+
+  .subgame {
+    width: @SUBGAME_MOBILE_SIZE_48;
+    height: @SUBGAME_MOBILE_SIZE_48;
+  }
+
+  .subgame .result-icon.draw {
+    padding: 12px;
+  }
+
+  .square {
+    width: @SQUARE_MOBILE_SIZE_48;
+    height: @SQUARE_MOBILE_SIZE_48;
+  }
+
+  .symbol-icon.x {
+    padding: 14px;
+  }
+
+  .symbol-icon.o {
+    padding: 12px;
+  }
+
+  .subgames-row.middle {
+    border-top-width: @SUBGAME_BORDER_WIDTH_2;
+    border-bottom-width: @SUBGAME_BORDER_WIDTH_2;
+  }
+
+  .subgames-column.center {
+    border-left-width: @SUBGAME_BORDER_WIDTH_2;
+    border-right-width: @SUBGAME_BORDER_WIDTH_2;
+  }
+
+  .square.prev {
+    outline-offset: -@SQUARE_OUTLINE_WIDTH_2;
+  }
+
+  .square.prev.x,
+  .square.prev.o {
+    outline-width: @SQUARE_OUTLINE_WIDTH_2;
+  }
+}
+
+@media (max-width: @RULES_MAX_WIDTH) {
+  .rules {
+    width: 100%;
+
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_46;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_46;
+      height: @SUBGAME_MOBILE_SIZE_46;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 11px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_46;
+      height: @SQUARE_MOBILE_SIZE_46;
+    }
+
+    .symbol-icon.x {
+      padding: 13px;
+    }
+
+    .symbol-icon.o {
+      padding: 11px;
+    }
+  }
+}
+
+@media (max-width: 1424px) {
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_44;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_44;
+      height: @SUBGAME_MOBILE_SIZE_44;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_44;
+      height: @SQUARE_MOBILE_SIZE_44;
+    }
+  }
+}
+
+@media (max-width: 1360px) {
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_42;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_42;
+      height: @SUBGAME_MOBILE_SIZE_42;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 10px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_42;
+      height: @SQUARE_MOBILE_SIZE_42;
+    }
+
+    .symbol-icon.x {
+      padding: 12px;
+    }
+
+    .symbol-icon.o {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 1328px) {
+  .rule-section {
+    margin-bottom: 40px;
+  }
+
+  .rule-description {
+    margin-bottom: 20px;
+  }
+
+  .rule-examples {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rule-example:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_52;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_52;
+      height: @SUBGAME_MOBILE_SIZE_52;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 13px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_52;
+      height: @SQUARE_MOBILE_SIZE_52;
+    }
+
+    .symbol-icon.x {
+      padding: 15px;
+    }
+
+    .symbol-icon.o {
+      padding: 13px;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .rule-description {
+    padding: 0 20px;
+  }
+
+  .rule-example:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_42;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_42;
+      height: @SUBGAME_MOBILE_SIZE_42;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 10px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_42;
+      height: @SQUARE_MOBILE_SIZE_42;
+    }
+
+    .symbol-icon.x {
+      padding: 12px;
+    }
+
+    .symbol-icon.o {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 499px) {
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_38;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_38;
+      height: @SUBGAME_MOBILE_SIZE_38;
+    }
+
+    .subgame .result-icon.x {
+      padding: 6px;
+    }
+
+    .subgame .result-icon.o {
+      padding: 4px;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 9px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_38;
+      height: @SQUARE_MOBILE_SIZE_38;
+    }
+
+    .symbol-icon.x {
+      padding: 10px;
+    }
+
+    .symbol-icon.o {
+      padding: 9px;
+    }
+  }
+}
+
+@media (max-width: 423px) {
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_32;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_32;
+      height: @SUBGAME_MOBILE_SIZE_32;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 8px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_32;
+      height: @SQUARE_MOBILE_SIZE_32;
+    }
+
+    .symbol-icon.x {
+      padding: 8px;
+    }
+
+    .symbol-icon.o {
+      padding: 7px;
+    }
+  }
+}
+
+@media (max-width: 383px) {
+  .rule-example:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_30;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_30;
+      height: @SUBGAME_MOBILE_SIZE_30;
+    }
+
+    .subgame .result-icon.x {
+      padding: 4px;
+    }
+
+    .subgame .result-icon.o {
+      padding: 2px;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 7px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_30;
+      height: @SQUARE_MOBILE_SIZE_30;
+    }
+
+    .symbol-icon.x {
+      padding: 7px;
+    }
+
+    .symbol-icon.o {
+      padding: 6px;
+    }
+  }
+}
+
+@media (max-width: 323px) {
+  .rule-description {
+    margin-bottom: 18px;
+    font-size: 18px;
+  }
+
+  .rule-example:not(:last-child) {
+    margin-bottom: 18px;
+  }
+
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_24;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_24;
+      height: @SUBGAME_MOBILE_SIZE_24;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 6px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_24;
+      height: @SQUARE_MOBILE_SIZE_24;
+    }
+
+    .symbol-icon.x {
+      padding: 5px;
+    }
+
+    .symbol-icon.o {
+      padding: 4px;
+    }
+  }
+}
+
+@media (max-width: @MAX_WIDTH_MOBILE_SIZE_22) {
+  .rule-description {
+    padding: 0 10px;
+  }
+
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_22;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_22;
+      height: @SUBGAME_MOBILE_SIZE_22;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 5px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_22;
+      height: @SQUARE_MOBILE_SIZE_22;
+    }
+  }
+}
+
+@media (max-width: @MAX_WIDTH_MOBILE_SIZE_20) {
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_20;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_20;
+      height: @SUBGAME_MOBILE_SIZE_20;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_20;
+      height: @SQUARE_MOBILE_SIZE_20;
+    }
+  }
+}
+
+@media (max-width: @MAX_WIDTH_MOBILE_SIZE_18) {
+  .rule-description {
+    padding: 0 4px;
+  }
+
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_18;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_18;
+      height: @SUBGAME_MOBILE_SIZE_18;
+    }
+
+    .subgame .result-icon.draw {
+      padding: 4px;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_18;
+      height: @SQUARE_MOBILE_SIZE_18;
+    }
+  }
+}
+
+@media (max-width: @MAX_WIDTH_MOBILE_SIZE_16) {
+  .rules {
+    .game {
+      width: @SUPERGAME_MOBILE_SIZE_16;
+    }
+
+    .subgame {
+      width: @SUBGAME_MOBILE_SIZE_16;
+      height: @SUBGAME_MOBILE_SIZE_16;
+    }
+
+    .square {
+      width: @SQUARE_MOBILE_SIZE_16;
+      height: @SQUARE_MOBILE_SIZE_16;
+    }
+  }
+}

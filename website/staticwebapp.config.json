@@ -1,0 +1,25 @@
+{
+  "routes": [
+    {
+      "route": "/init",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/rules",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/blog",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/about",
+      "rewrite": "/index.html"
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html"
+    }
+  }
+}

@@ -1,0 +1,355 @@
+.settings {
+  position: absolute;
+  z-index: 2;
+  top: @HEADER_DESKTOP_HEIGHT;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: @WEBSITE_MIN_WIDTH;
+  padding: 20px;
+  border-bottom: 1px solid var(--nav-border-color);
+  box-shadow: 0px 1px 4px rgb(0 0 0 / 1%), 0px 15px 30px rgb(0 0 0 / 2%), 0px 40px 60px rgb(0 0 0 / 5%);
+  color: var(--settings-text-color);
+  background-color: var(--settings-bg-color);
+  line-height: 1.5;
+}
+
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-header {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+
+.settings-content {
+  width: 800px;
+  font-size: 16px;
+}
+
+.settings legend {
+  color: var(--settings-legend-color);
+}
+
+.ai-settings,
+.players-settings,
+.color-theme-settings,
+.board-size-settings {
+  margin-bottom: 20px;
+  border: 1px solid var(--settings-border-color);
+}
+
+.num-simulations-settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 8px 3px;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 220px;
+    margin-right: 10px;
+    text-align: left;
+    user-select: none;
+  }
+
+  input {
+    flex-grow: 1;
+  }
+}
+
+.num-simulations-settings input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.num-simulations-settings input::-moz-range-thumb {
+  cursor: pointer;
+}
+
+.num-simulations-settings-protip {
+  margin: 0 8px 3px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.players-settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.player-settings {
+  width: 50%;
+  border: none;
+}
+
+.player-legend {
+  padding-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.player-legend.x {
+  color: var(--x-status-color);
+}
+
+.player-legend.o {
+  color: var(--o-status-color);
+}
+
+.human-control-settings,
+.ai-control-settings {
+  padding: 2px 0px 2px 20px;
+
+  &.disabled label span,
+  &.disabled .auto-selection-text {
+    color: var(--settings-disabled-color);
+  }
+}
+
+.human-control-radio,
+.disable-evaluations-checkbox,
+.ai-control-radio,
+.auto-selection-radio,
+.hide-evaluations-checkbox {
+  input {
+    margin: 6px;
+    cursor: pointer;
+  }
+
+  label {
+    padding-left: 3px;
+    user-select: none;
+    cursor: pointer;
+  }
+}
+
+.auto-selection-settings {
+  margin-bottom: 1px;
+}
+
+.auto-selection-text {
+  display: block;
+  padding-top: 1px;
+  padding-left: 8px;
+}
+
+.auto-selection-radios {
+  padding-left: 10px;
+}
+
+.auto-selection-radio {
+  padding: 0 8px;
+
+  input {
+    margin: 6px 3px;
+  }
+}
+
+.auto-selection-duration-settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 18px;
+}
+
+.auto-selection-duration-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 24px;
+  margin: 1px;
+  padding: 0;
+  border: none;
+  fill: var(--nav-fg-color);
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.auto-selection-duration-button:disabled {
+  fill: var(--settings-disabled-button-color);
+}
+
+.auto-selection-duration-button-icon {
+  width: 10px;
+  height: 14px;
+  margin: 4px 2px 6px;
+}
+
+.auto-selection-duration-number {
+  box-sizing: border-box;
+  width: 18px;
+  margin: 0 !important;
+  border: none;
+  outline: none;
+  color: var(--settings-text-color);
+  background-color: inherit;
+  text-align: center;
+  font-size: inherit;
+  user-select: none;
+  cursor: default !important;
+  -moz-appearance: textfield;
+}
+
+.auto-selection-duration-number:disabled {
+  color: var(--settings-disabled-color);
+}
+
+.auto-selection-duration-number::-webkit-outer-spin-button,
+.auto-selection-duration-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.auto-selection-duration-settings label {
+  cursor: default;
+  padding-left: 4px;
+}
+
+.color-theme-settings,
+.board-size-settings {
+  padding-bottom: 12px;
+
+  input {
+    margin: 6px;
+    cursor: pointer;
+  }
+
+  label {
+    padding-left: 3px;
+    user-select: none;
+    cursor: pointer;
+  }
+}
+
+.close-settings-button {
+  width: 70px;
+  margin: 10px 0;
+  padding: 6px;
+  border: 1px solid var(--nav-button-border-color);
+  border-radius: 0.4em;
+  outline-offset: 4px;
+  color: var(--nav-button-fg-color);
+  background-color: var(--nav-button-bg-color);
+  font-size: 14px;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.close-settings-button:hover {
+  color: var(--nav-button-hover-fg-color);
+  background-color: var(--nav-button-hover-bg-color);
+}
+
+.close-settings-button:active {
+  color: var(--nav-button-active-fg-color);
+  background-color: var(--nav-button-active-bg-color);
+}
+
+@media (max-width: 840px) {
+  .settings-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: @WEBSITE_MOBILE_MAX_WIDTH) {
+  .settings {
+    top: @HEADER_MOBILE_HEIGHT;
+  }
+
+  .settings-header {
+    display: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .settings-header {
+    display: block;
+  }
+}
+
+@media (max-width: 499px) {
+  .players-settings {
+    flex-direction: column;
+  }
+
+  .player-settings {
+    width: 80%;
+  }
+}
+
+@media (max-width: 479px) {
+  .num-simulations-settings {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 6px;
+
+    label {
+      width: unset;
+      margin-right: 0px;
+      margin-bottom: 8px;
+    }
+
+    input {
+      flex-grow: unset;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 399px) {
+  .settings-content {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 299px) {
+  .settings {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 245px) {
+  .settings {
+    padding: 20px 5px;
+  }
+
+  .num-simulations-settings {
+    margin-left: 0px;
+    margin-right: 0px;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: unset;
+    }
+  }
+
+  .num-simulations-settings-value {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: right;
+  }
+
+  .players-settings {
+    padding-right: 0;
+  }
+
+  .human-control-settings,
+  .ai-control-settings {
+    padding-left: 4px;
+  }
+}

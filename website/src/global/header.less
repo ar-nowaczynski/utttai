@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: @HEADER_DESKTOP_HEIGHT;
+  border-bottom: 1px solid var(--nav-border-color);
+}
+
+@media (max-width: @WEBSITE_MOBILE_MAX_WIDTH) {
+  header {
+    height: @HEADER_MOBILE_HEIGHT;
+  }
+}

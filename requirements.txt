@@ -1,0 +1,9 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+tqdm==4.62.2
+numpy==1.21.1
+torch==1.9.0+cu111
+onnx==1.10.1
+onnxruntime==1.9.0
+pytest==6.2.4
+fastapi[all]==0.70.0
+watchdog==2.1.6
