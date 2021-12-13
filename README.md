@@ -29,7 +29,7 @@ The project overview in chronological order:
 
 ## Evaluation
 
-Because there is no external benchmark, a custom evaluation setup has been created to assess the overall AI performance in Ultimate Tic-Tac-Toe.
+The following evaluation procedure has been designed and then computed to assess the overall AI performance in Ultimate Tic-Tac-Toe.
 
 ### Evaluation setup
 
