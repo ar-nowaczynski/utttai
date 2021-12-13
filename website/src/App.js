@@ -658,7 +658,7 @@ class App extends React.Component {
     return (
       <div className={joinClassNames('game', settings['boardSize'] === 'ENLARGED' ? 'enlarged' : null)}>
         <Helmet defer={false}>
-          <title>uttt.ai</title>
+          <title>uttt.ai – AlphaZero-like AI for playing Ultimate Tic-Tac-Toe</title>
         </Helmet>
         <Dashboard
           uttt={gameline.uttt}
