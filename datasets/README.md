@@ -16,7 +16,7 @@ Datapoints are grouped by their depth, which is defined as the number of moves (
 
 ![stage1-mcts: number of datapoints per depth](figure_stage1_mcts_num_datapoints_per_depth.svg "stage1-mcts: number of datapoints per depth")
 
-MCTS datapoints were created using: [../scripts/mcts_evaluate.py](../scripts/mcts_evaluate.py), [../scripts/mcts_generate.py](../scripts/mcts_generate.py), [../utttcpp/src/mcts-evaluate.cpp](../utttcpp/src/mcts-evaluate.cpp) and [../utttcpp/src/mcts-generate.cpp](../utttcpp/src/mcts-generate.cpp). Initial depth for self-playing was progressively deepened to avoid repeated computation.
+MCTS datapoints were created using: [../scripts/mcts_evaluate.py](../scripts/mcts_evaluate.py), [../scripts/mcts_generate.py](../scripts/mcts_generate.py), [../utttcpp/src/mcts-evaluate.cpp](../utttcpp/src/mcts-evaluate.cpp) and [../utttcpp/src/mcts-generate.cpp](../utttcpp/src/mcts-generate.cpp). Initial depth for self-playing was progressively deepened to avoid repeating computation.
 
 MCTS datapoint format:
 ```
@@ -39,7 +39,7 @@ Datapoints are grouped by their depth, which is defined as the number of moves (
 
 ![stage2-nmcts: number of datapoints per depth](figure_stage2_nmcts_num_datapoints_per_depth.svg "stage2-nmcts: number of datapoints per depth")
 
-NMCTS datapoints were created using: [../scripts/nmcts_evaluate.py](../scripts/nmcts_evaluate.py), [../scripts/nmcts_evaluate_parallel.py](../scripts/nmcts_evaluate_parallel.py), [../scripts/nmcts_generate.py](../scripts/nmcts_generate.py), [../scripts/nmcts_generate_parallel.py](../scripts/nmcts_generate_parallel.py), [../utttcpp/src/nmcts-evaluate.cpp](../utttcpp/src/nmcts-evaluate.cpp) and [../utttcpp/src/nmcts-generate.cpp](../utttcpp/src/nmcts-generate.cpp). Initial depth for self-playing was progressively deepened to avoid repeated computation.
+NMCTS datapoints were created using: [../scripts/nmcts_evaluate.py](../scripts/nmcts_evaluate.py), [../scripts/nmcts_evaluate_parallel.py](../scripts/nmcts_evaluate_parallel.py), [../scripts/nmcts_generate.py](../scripts/nmcts_generate.py), [../scripts/nmcts_generate_parallel.py](../scripts/nmcts_generate_parallel.py), [../utttcpp/src/nmcts-evaluate.cpp](../utttcpp/src/nmcts-evaluate.cpp) and [../utttcpp/src/nmcts-generate.cpp](../utttcpp/src/nmcts-generate.cpp). Initial depth for self-playing was progressively deepened to avoid repeating computation.
 
 NMCTS datapoint format:
 ```
