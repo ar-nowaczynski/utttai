@@ -105,3 +105,7 @@ This project was developed using:
 - npm 8.1.1
 - React 17.0.2
 - g++ 9.3.0
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
