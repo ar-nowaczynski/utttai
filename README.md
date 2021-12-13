@@ -1,6 +1,6 @@
 # [uttt.ai](https://uttt.ai)
 
-AlphaZero-like solution for playing Ultimate Tic-Tac-Toe in the browser.
+AlphaZero-like AI solution for playing Ultimate Tic-Tac-Toe in the browser.
 
 This project is a loose adaptation of the original [AlphaZero published by Deepmind](https://deepmind.com/blog/article/alphazero-shedding-new-light-grand-games-chess-shogi-and-go). It follows key ideas behind the AlphaZero, such as generating training data from self-play or using single neural network to guide the Monte-Carlo Tree Search (MCTS) algorithm. However, the actual implementation of these ideas is different due to limitations on the available computing power, specifically:
 
