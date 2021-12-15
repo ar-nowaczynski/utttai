@@ -695,7 +695,7 @@ class App extends React.Component {
             updateSettings={this.updateSettings}
             closeGameMenu={this.closeGameMenu}
           />
-          <LoadingModal loadingStatus={loadingStatus} />
+          <LoadingModal loadingStatus={loadingStatus} isGameMenuOpened={isGameMenuOpened} />
         </div>
         <GameMenu
           device="mobile"

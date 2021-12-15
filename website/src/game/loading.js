@@ -2,8 +2,8 @@ import React from 'react';
 
 class LoadingModal extends React.PureComponent {
   render() {
-    const { loadingStatus } = this.props;
-    if (!loadingStatus || !loadingStatus.isModalOpened) {
+    const { loadingStatus, isGameMenuOpened } = this.props;
+    if (!loadingStatus || !loadingStatus.isModalOpened || isGameMenuOpened) {
       return null;
     }
     if (loadingStatus.loading) {
