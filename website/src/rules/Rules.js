@@ -17,6 +17,10 @@ import {
 } from './examples';
 
 class Rules extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   renderGameBoard(uttt, prevAction) {
     return (
       <div className="game">
