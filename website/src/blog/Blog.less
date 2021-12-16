@@ -3,55 +3,57 @@
   text-align: center;
 
   .content {
-    width: @BLOG_CONTENT_MAX_WIDTH;
+    max-width: @BLOG_CONTENT_MAX_WIDTH;
     margin: 20px 0 40px;
     font-size: 16px;
 
     a {
       color: var(--blog-link-color);
+
+      &.link {
+        word-break: break-all;
+      }
     }
 
     a:visited {
       color: var(--blog-link-visited-color);
     }
+
+    li {
+      margin: 16px 0;
+    }
   }
 }
 
 .post {
-  margin: 20px 0 40px;
+  margin: 20px 40px 30px;
 }
 
 .post-title {
-  padding: 0 12px;
   text-align: center;
 }
 
 .post-content {
   box-sizing: border-box;
-  margin: 0 40px;
   text-align: left;
 }
 
-.post-content-youtube {
+.post-youtube-video {
+  width: 100%;
   text-align: center;
 }
 
-.post-youtube-video {
+.post-youtube-video-iframe {
   width: 640px;
   height: 480px;
 }
 
 .post-youtube-video-link {
   display: none !important;
-  margin: 0 20px;
 
   span {
     word-break: break-all;
   }
-}
-
-.post-init-link {
-  word-break: break-all;
 }
 
 @media (max-width: 800px) {
@@ -63,32 +65,46 @@
 }
 
 @media (max-width: 767px) {
-  .post-youtube-video {
+  .post-youtube-video-iframe {
     width: 480px;
     height: 315px;
   }
 }
 
-@media (max-width: 539px) {
-  .post-content {
-    margin: 0 30px;
+@media (max-width: 599px) {
+  .post {
+    margin: 20px 30px 30px;
   }
+}
 
-  .post-youtube-video {
+@media (max-width: 579px) {
+  .post-youtube-video-iframe {
     width: 360px;
     height: 270px;
   }
 }
 
-@media (max-width: 409px) {
-  .post-youtube-video {
+@media (max-width: 499px) {
+  .post {
+    ul {
+      padding-left: 30px;
+    }
+  }
+}
+
+@media (max-width: 459px) {
+  .post-youtube-video-iframe {
     width: 320px;
     height: 240px;
   }
 }
 
-@media (max-width: 359px) {
-  .post-youtube-video {
+@media (max-width: 399px) {
+  .post {
+    margin: 20px 20px 30px;
+  }
+
+  .post-youtube-video-iframe {
     width: 240px;
     height: 180px;
   }
@@ -96,22 +112,28 @@
 
 @media (max-width: 299px) {
   .post {
-    margin-bottom: 30px;
-
     h2 {
       font-size: 18px;
     }
+
+    ul {
+      padding-left: 20px;
+    }
   }
 
-  .post-content {
-    margin: 0 20px;
-  }
-
-  .post-youtube-video {
+  .post-youtube-video-iframe {
     display: none !important;
   }
 
   .post-youtube-video-link {
     display: block !important;
+  }
+}
+
+@media (max-width: 239px) {
+  .blog {
+    .content {
+      font-size: 14px;
+    }
   }
 }

@@ -17,12 +17,12 @@ The project overview in chronological order:
 
 ### Differences from the original AlphaZero
 
-- Much smaller Policy-Value Network architecture designed specifically for playing Ultimate Tic-Tac-Toe in the browser with only 5 million parameters (20 MB): [utttpy/selfplay/policy_value_network.py](utttpy/selfplay/policy_value_network.py).
+- Much smaller Policy-Value Network (PVN) architecture designed specifically for playing Ultimate Tic-Tac-Toe in the browser with only 5 million parameters (20 MB): [utttpy/selfplay/policy_value_network.py](utttpy/selfplay/policy_value_network.py).
 - Total separation of self-play data generation process from the Policy-Value Network training (offline RL).
 - More MCTS simulations per position for training (self-play data quality over quantity).
 - The initial self-play dataset was generated from pure MCTS simulations (random playouts are faster and better than random Policy-Value Network predictions).
 - Search simulations are synchronous, single-threaded and sequential.
-- Enabled data augmentation by flipping the board during Policy-Value Network training.
+- Enabled data augmentation by flipping the board during the Policy-Value Network training.
 - Value target for MSE loss function is defined as the root's mean state value rather than the game outcome.
 - Masked KL divergence loss for policy head instead of Cross Entropy loss.
 - Auxiliary policy head loss for predicting action values next to action logits.

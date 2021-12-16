@@ -26,9 +26,9 @@ class About extends React.Component {
             </a>
           </div>
           <div>
-            This website is my{' '}
+            {'This website is my '}
             <strong>
-              side-project inspired by{' '}
+              {'side-project inspired by '}
               <a href="https://deepmind.com/blog/article/alphazero-shedding-new-light-grand-games-chess-shogi-and-go">
                 DeepMind's AlphaZero
               </a>
@@ -46,16 +46,17 @@ class About extends React.Component {
           </div>
           <div>
             <a href="https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe">Ultimate Tic-Tac-Toe</a> is an advanced variant
-            of the classic Tic-Tac-Toe game that requires long-term strategic thinking. See the{' '}
+            of the well-known <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">tic-tac-toe</a> game that requires
+            long-term strategic thinking. {'See the '}
             <NavLink exact to="/rules">
               /rules
             </NavLink>
             .
           </div>
           <div>
-            The AI deployed on uttt.ai evaluates Ultimate Tic-Tac-Toe positions using Monte-Carlo Tree Search guided by
-            a neural network. Each MCTS simulation expands the tree based on the Policy-Value Network predictions. When
-            num simulations = 1, the evaluation comes directly from the PVN.
+            The AI deployed on uttt.ai evaluates Ultimate Tic-Tac-Toe positions using a neural network-guided
+            Monte-Carlo Tree Search. Each MCTS simulation expands the tree based on the Policy-Value Network
+            predictions. When num simulations = 1, the evaluation comes directly from the PVN.
           </div>
           <div>
             The position evaluation consist of the state value displayed above the board (a number from -100 to 100) and
