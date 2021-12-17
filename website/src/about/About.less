@@ -4,12 +4,16 @@
 
   .content {
     max-width: @ABOUT_CONTENT_MAX_WIDTH;
-    margin: 20px 15px 40px;
+    margin: 20px 0 40px;
     text-align: left;
     font-size: 16px;
 
     a {
       color: var(--about-link-color);
+
+      &.link {
+        word-break: break-all;
+      }
     }
 
     a:visited {
@@ -18,7 +22,7 @@
   }
 
   .content > div {
-    margin: 12px auto;
+    margin: 12px 40px;
   }
 
   .profile-links {
@@ -55,6 +59,10 @@
 }
 
 @media (max-width: 599px) {
+  .about .content > div {
+    margin: 12px 30px;
+  }
+
   .about .support .crypto .address {
     font-size: 14px;
   }
@@ -63,5 +71,11 @@
 @media (max-width: 499px) {
   .about .support .crypto .address {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 399px) {
+  .about .content > div {
+    margin: 12px 20px;
   }
 }

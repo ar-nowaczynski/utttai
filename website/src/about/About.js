@@ -41,7 +41,8 @@ class About extends React.Component {
           </div>
           <div>
             <strong>
-              I adapted the original AlphaZero research to play Ultimate Tic-Tac-Toe game in the browser on your device.
+              I adapted the original AlphaZero research to play Ultimate Tic-Tac-Toe game in the browser on{'\u00A0'}
+              your device.
             </strong>
           </div>
           <div>
@@ -68,7 +69,11 @@ class About extends React.Component {
           </div>
           <div>The AI's self-play training took about 10 weeks on my desktop PC to complete.</div>
           <div>
-            Source code: <a href="https://github.com/ar-nowaczynski/uttt">https://github.com/ar-nowaczynski/uttt</a>.
+            {'Source code: '}
+            <a className="link" href="https://github.com/ar-nowaczynski/uttt">
+              https://github.com/ar-nowaczynski/uttt
+            </a>
+            .
           </div>
           <div className="support">
             <div>If you like this project and want to support it, send me a tip:</div>

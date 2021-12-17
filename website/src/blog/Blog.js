@@ -232,8 +232,8 @@ class Blog extends React.Component {
                   {'Policy-Value Network is running in the browser on your device using the '}
                   <a href="https://v8.dev/features/simd">WebAssembly SIMD</a>
                   {' backend (CPU only). '}
-                  The WebGL backend is an alternative option that enables GPU access, but it doesn't support
-                  ConvTranspose2D layer (
+                  {`The WebGL backend is an alternative option that enables GPU access, but it doesn't support `}
+                  <span style={{ wordBreak: 'break-word' }}>ConvTranspose2D</span> layer (
                   <a href="https://github.com/microsoft/onnxruntime/blob/master/js/web/docs/operators.md">
                     WebGl Operators Support Table
                   </a>
