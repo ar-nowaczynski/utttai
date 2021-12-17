@@ -23,7 +23,7 @@ class LoadingModal extends React.PureComponent {
             <div className="loading-modal-foreground error">
               <span className="loading-modal-text error">Sorry, could not load AI.</span>
               <span className="loading-modal-text error">Your browser is not supported.</span>
-              <span className="loading-modal-text error">(uttt.ai works best on desktops and laptops)</span>
+              <span className="loading-modal-text error">(uttt.ai works best on Chrome, Firefox, Opera and Brave)</span>
             </div>
           </div>
         </div>
