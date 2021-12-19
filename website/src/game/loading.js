@@ -1,17 +1,20 @@
 import React from 'react';
+import { roundNumber } from '../global/formatting';
 
 class LoadingModal extends React.PureComponent {
   render() {
     const { loadingStatus, isGameMenuOpened } = this.props;
-    if (!loadingStatus || !loadingStatus.isModalOpened || isGameMenuOpened) {
+    if (!loadingStatus || loadingStatus.success || isGameMenuOpened) {
       return null;
     }
     if (loadingStatus.loading) {
+      const loadingProgressValue = String(roundNumber(100 * loadingStatus.progress)) + ' %';
       return (
         <div className="loading-modal">
           <div className="loading-modal-background">
             <div className="loading-modal-foreground">
               <span className="loading-modal-text">Loading AI...</span>
+              <span className="loading-modal-text progress">{loadingProgressValue}</span>
             </div>
           </div>
         </div>

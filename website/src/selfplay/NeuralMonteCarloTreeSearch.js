@@ -200,33 +200,67 @@ export default class NeuralMonteCarloTreeSearch {
     }
   }
 
-  async createPolicyValueNetSession(showLoadingStatus, hideLoadingStatus, showLoadingErrorStatus) {
+  async createPolicyValueNetSession(updateLoadingStatus) {
     if (this.policyValueNetSessionLoadingFlag) {
       return;
     }
     this.policyValueNetSessionLoadingFlag = true;
-    const showLoadingStatusTimerID = setTimeout(showLoadingStatus, 0);
+    let wasmLoadingProgress = 0;
+    const showLoadingStatusTimerID = setTimeout(
+      () => updateLoadingStatus({ loading: true, progress: wasmLoadingProgress }),
+      0
+    );
+    const wasmLoadingProgressTimerID = setInterval(() => {
+      if (wasmLoadingProgress < 0.099) {
+        wasmLoadingProgress += 0.01;
+      }
+      updateLoadingStatus({ loading: true, progress: wasmLoadingProgress });
+    }, 1000);
     try {
       await InferenceSession.create('/init.onnx', {
         executionProviders: ['wasm'],
       });
+      clearTimeout(wasmLoadingProgressTimerID);
       if (env && env.wasm && env.wasm.simd) {
-        this.policyValueNetSession = await InferenceSession.create('/policy_value_net_stage2.onnx', {
+        const response = await fetch('/policy_value_net_stage2.onnx');
+        const contentLength = Number(response.headers.get('Content-Length'));
+        let receivedLength = 0;
+        const reader = response.body.getReader();
+        const chunks = [];
+        while (receivedLength < contentLength) {
+          const { value, done } = await reader.read();
+          if (done) {
+            break;
+          }
+          chunks.push(value);
+          receivedLength += value.length;
+          const pvnLoadingProgress = receivedLength / contentLength;
+          updateLoadingStatus({
+            loading: true,
+            progress: wasmLoadingProgress + (1 - wasmLoadingProgress) * pvnLoadingProgress,
+          });
+        }
+        const arrayBuffer = new Uint8Array(receivedLength);
+        let position = 0;
+        for (const chunk of chunks) {
+          arrayBuffer.set(chunk, position);
+          position += chunk.length;
+        }
+        this.policyValueNetSession = await InferenceSession.create(arrayBuffer, {
           executionProviders: ['wasm'],
         });
       } else {
         throw new NeuralMonteCarloTreeSearchError('ort-wasm-simd is not supported');
       }
     } catch (e) {
+      clearTimeout(wasmLoadingProgressTimerID);
       clearTimeout(showLoadingStatusTimerID);
-      setTimeout(() => {
-        showLoadingErrorStatus();
-      }, 1000);
+      setTimeout(() => updateLoadingStatus({ error: true }), 1000);
       this.policyValueNetSessionUnavailabilityFlag = true;
       return;
     }
     clearTimeout(showLoadingStatusTimerID);
-    hideLoadingStatus();
+    updateLoadingStatus({ success: true });
   }
 
   createTree(uttt) {

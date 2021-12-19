@@ -270,17 +270,9 @@ class App extends React.Component {
     if (this.state.isGameMenuOpened) {
       return;
     }
-    this.nmcts.createPolicyValueNetSession(
-      () => {
-        this.setState({ loadingStatus: { loading: true, isModalOpened: true } });
-      },
-      () => {
-        this.setState({ loadingStatus: { success: true, isModalOpened: false } });
-      },
-      () => {
-        this.setState({ loadingStatus: { error: true, isModalOpened: true } });
-      }
-    );
+    this.nmcts.createPolicyValueNetSession((newLoadingStatus) => {
+      this.setState({ loadingStatus: newLoadingStatus });
+    });
   };
 
   updateCurrentNumSimulations = () => {
@@ -488,7 +480,7 @@ class App extends React.Component {
 
   closeGameMenu = (resumeSimulationsFlag) => {
     if (!this.state.loadingStatus) {
-      this.setState({ isGameMenuOpened: false, loadingStatus: { loading: true, isModalOpened: true } }, () => {
+      this.setState({ isGameMenuOpened: false, loadingStatus: { loading: true, progress: 0 } }, () => {
         if (resumeSimulationsFlag) {
           this.resumeSimulations();
         }
