@@ -447,17 +447,19 @@ class App extends React.Component {
           'autoSelection': 'ARGMAX',
           'autoSelectionDurationSeconds': 1,
         },
-        'watchSubmenu': {
-          'numSimulations': isMobileDevice() ? 100 : 1000,
-          'autoSelection': 'ARGMAX',
-          'autoSelectionDurationSeconds': 1,
-        },
         'controlSubmenu': {
           'numSimulations': isMobileDevice() ? 100 : 1000,
         },
       };
-      setToLocalStorage('gameMenuSettings', gameMenuSettings);
+    } else {
+      const submenuKeys = new Set(['playSubmenu', 'controlSubmenu']);
+      for (const submenuKey of Object.keys(gameMenuSettings)) {
+        if (!submenuKeys.has(submenuKey)) {
+          delete gameMenuSettings[submenuKey];
+        }
+      }
     }
+    setToLocalStorage('gameMenuSettings', gameMenuSettings);
     return gameMenuSettings;
   };
 

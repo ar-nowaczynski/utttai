@@ -23,11 +23,6 @@ class GameMenu extends React.PureComponent {
     updateGameMenuView('PLAY_SUBMENU');
   };
 
-  handleWatchClick = () => {
-    const { updateGameMenuView } = this.props;
-    updateGameMenuView('WATCH_SUBMENU');
-  };
-
   handleControlClick = () => {
     const { updateGameMenuView } = this.props;
     updateGameMenuView('CONTROL_SUBMENU');
@@ -58,22 +53,6 @@ class GameMenu extends React.PureComponent {
       newSettings['hideEvaluationsX'] = true;
     }
     updateSettings(newSettings);
-    closeGameMenu(true);
-  };
-
-  handleWatchStartClick = () => {
-    const { gameMenuSettings, updateSettings, closeGameMenu } = this.props;
-    updateSettings({
-      numSimulations: gameMenuSettings['watchSubmenu']['numSimulations'],
-      controlPlayerX: 'AI_CONTROL',
-      controlPlayerO: 'AI_CONTROL',
-      autoSelectionX: gameMenuSettings['watchSubmenu']['autoSelection'],
-      autoSelectionO: gameMenuSettings['watchSubmenu']['autoSelection'],
-      autoSelectionXDurationSeconds: gameMenuSettings['watchSubmenu']['autoSelectionDurationSeconds'],
-      autoSelectionODurationSeconds: gameMenuSettings['watchSubmenu']['autoSelectionDurationSeconds'],
-      hideEvaluationsX: false,
-      hideEvaluationsO: false,
-    });
     closeGameMenu(true);
   };
 
@@ -156,9 +135,6 @@ class GameMenu extends React.PureComponent {
             <span className="gamemenu-title">uttt.ai</span>
             <button className="gamemenu-button" onClick={this.handlePlayClick}>
               Play Human vs AI
-            </button>
-            <button className="gamemenu-button" onClick={this.handleWatchClick}>
-              Watch AI self-play
             </button>
             <button className="gamemenu-button" onClick={this.handleControlClick}>
               Control both sides
@@ -350,131 +326,6 @@ class GameMenu extends React.PureComponent {
     );
   }
 
-  renderWatchNumSimulationsSettings() {
-    const { device, gameMenuSettings } = this.props;
-    return (
-      <div className="num-simulations-settings">
-        <label htmlFor={`${device}watchnumsimulationsrange`}>
-          <span>Num simulations:</span>
-          <span className="num-simulations-settings-value">
-            {gameMenuSettings['watchSubmenu']['numSimulations'].toLocaleString('en-US')}
-          </span>
-        </label>
-        <input
-          type="range"
-          id={`${device}watchnumsimulationsrange`}
-          name={`${device}watchnumsimulationsrange`}
-          min="0"
-          max={getNumSimulationsRangeLength() - 1}
-          value={numSimulationsIndexOf(gameMenuSettings['watchSubmenu']['numSimulations'])}
-          onChange={(event) => this.handleNumSimulationsChange(event, 'watchSubmenu')}
-        ></input>
-      </div>
-    );
-  }
-
-  renderWatchAutoSelectionSettings() {
-    const { device, gameMenuSettings } = this.props;
-    return (
-      <div className="auto-selection-settings">
-        <span className="auto-selection-text">Move selection:</span>
-        <div className="auto-selection-radios">
-          <div className="auto-selection-radio">
-            <input
-              type="radio"
-              id={`${device}watchautoselectiontop`}
-              name={`${device}watchautoselectiontop`}
-              value="ARGMAX"
-              onChange={(event) => this.handleAutoSelectionChange(event, 'watchSubmenu')}
-              checked={gameMenuSettings['watchSubmenu']['autoSelection'] === 'ARGMAX'}
-            />
-            <label htmlFor={`${device}watchautoselectiontop`}>
-              <span>Argmax</span>
-            </label>
-          </div>
-          <div className="auto-selection-radio">
-            <input
-              type="radio"
-              id={`${device}watchautoselectionsample`}
-              name={`${device}watchautoselectionsample`}
-              value="SAMPLE"
-              onChange={(event) => this.handleAutoSelectionChange(event, 'watchSubmenu')}
-              checked={gameMenuSettings['watchSubmenu']['autoSelection'] === 'SAMPLE'}
-            />
-            <label htmlFor={`${device}watchautoselectionsample`}>
-              <span>Sample</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  renderWatchAutoSelectionHighlighting() {
-    const { device, gameMenuSettings } = this.props;
-    return (
-      <div className="auto-selection-highlighting">
-        <span className="auto-selection-text">Move highlighting:</span>
-        <div className="auto-selection-duration-settings">
-          <button
-            className="auto-selection-duration-button"
-            disabled={gameMenuSettings['watchSubmenu']['autoSelectionDurationSeconds'] === 0}
-            onClick={() => this.handleAutoSelectionDurationDecrementClick('watchSubmenu')}
-          >
-            <TriangleLeftIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <input
-            type="number"
-            id={`${device}watchautoselectiondurationseconds`}
-            name={`${device}watchautoselectiondurationseconds`}
-            className="auto-selection-duration-number"
-            value={gameMenuSettings['watchSubmenu']['autoSelectionDurationSeconds']}
-            min="0"
-            max="9"
-            readOnly={true}
-          />
-          <button
-            className="auto-selection-duration-button"
-            disabled={gameMenuSettings['watchSubmenu']['autoSelectionDurationSeconds'] === 9}
-            onClick={() => this.handleAutoSelectionDurationIncrementClick('watchSubmenu')}
-          >
-            <TriangleRightIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <label htmlFor={`${device}watchautoselectiondurationseconds`}>
-            <span>seconds</span>
-          </label>
-        </div>
-      </div>
-    );
-  }
-
-  renderWatchSubmenu() {
-    const { device } = this.props;
-    return (
-      <div className={joinClassNames('submenu', device)}>
-        <div className="submenu-background">
-          <div className={joinClassNames('submenu-foreground', device)}>
-            {this.renderBackButton()}
-            {this.renderThemeSwitch()}
-            <span className="submenu-title">Watch AI self-play</span>
-            <div className="submenu-content">
-              <div className="submenu-settings">
-                {this.renderWatchNumSimulationsSettings()}
-                {this.renderWatchAutoSelectionSettings()}
-                {this.renderWatchAutoSelectionHighlighting()}
-              </div>
-              <div className="submenu-buttons">
-                <button className="submenu-start-button" onClick={this.handleWatchStartClick}>
-                  Start
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   renderControlNumSimulationsSettings() {
     const { device, gameMenuSettings } = this.props;
     return (
@@ -530,8 +381,6 @@ class GameMenu extends React.PureComponent {
       return this.renderMainMenu();
     } else if (gameMenuView === 'PLAY_SUBMENU') {
       return this.renderPlaySubmenu();
-    } else if (gameMenuView === 'WATCH_SUBMENU') {
-      return this.renderWatchSubmenu();
     } else if (gameMenuView === 'CONTROL_SUBMENU') {
       return this.renderControlSubmenu();
     }
