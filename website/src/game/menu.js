@@ -236,7 +236,7 @@ class GameMenu extends React.PureComponent {
     const { device, gameMenuSettings } = this.props;
     return (
       <div className="auto-selection-settings">
-        <span className="auto-selection-text">Move selection:</span>
+        <span className="auto-selection-text">AI move selection:</span>
         <div className="auto-selection-radios">
           <div className="auto-selection-radio">
             <input
@@ -273,7 +273,7 @@ class GameMenu extends React.PureComponent {
     const { device, gameMenuSettings } = this.props;
     return (
       <div className="auto-selection-highlighting">
-        <span className="auto-selection-text">Move highlighting:</span>
+        <span className="auto-selection-text">AI move highlighting:</span>
         <div className="auto-selection-duration-settings">
           <button
             className="auto-selection-duration-button"
