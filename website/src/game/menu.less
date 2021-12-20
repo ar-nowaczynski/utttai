@@ -128,7 +128,17 @@
 .gamemenu-title {
   font-size: 32px;
   font-weight: bold;
-  margin-bottom: 6px;
+}
+
+.gamemenu-subtitle {
+  max-width: 320px;
+  margin: 4px 0;
+  font-size: 20px;
+  line-height: 1.5;
+
+  .br4 {
+    display: none !important;
+  }
 }
 
 .gamemenu-button,
@@ -345,9 +355,13 @@
     display: none;
   }
 
+  .gamemenu-subtitle {
+    margin: 0 0 2px;
+  }
+
   .gamemenu-button,
   .gamemenu-nav-link {
-    margin: 12px;
+    margin: 12px 6px;
   }
 
   .submenu-title {
@@ -369,17 +383,24 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-}
 
-@media (max-width: 459px) {
-  .gamemenu-button,
-  .gamemenu-nav-link {
-    width: 60%;
-    margin: 12px 6px;
+  .gamemenu-subtitle {
+    .br4 {
+      display: unset !important;
+    }
   }
 }
 
 @media (max-width: 399px) {
+  .gamemenu-subtitle {
+    max-width: 85%;
+  }
+
+  .gamemenu-button,
+  .gamemenu-nav-link {
+    width: 224px;
+  }
+
   .submenu-title {
     font-size: 22px;
   }
@@ -392,6 +413,11 @@
 }
 
 @media (max-width: 339px) {
+  .gamemenu-button,
+  .gamemenu-nav-link {
+    width: 200px;
+  }
+
   .submenu-title {
     font-size: 20px;
     margin-top: 2px;
@@ -409,6 +435,15 @@
     margin: 3px;
   }
 
+  .gamemenu-subtitle {
+    font-size: 18px;
+  }
+
+  .gamemenu-button,
+  .gamemenu-nav-link {
+    width: 180px;
+  }
+
   .submenu-title {
     margin-top: 0;
   }
@@ -417,6 +452,11 @@
 @media (max-width: 239px) {
   .gamemenu-foreground .theme-switch-icon {
     display: none;
+  }
+
+  .gamemenu-button,
+  .gamemenu-nav-link {
+    width: 160px;
   }
 
   .submenu-settings {
@@ -443,5 +483,12 @@
       width: 30px;
       font-size: 16px;
     }
+  }
+}
+
+@media (max-width: 239px) {
+  .gamemenu-button,
+  .gamemenu-nav-link {
+    width: 140px;
   }
 }

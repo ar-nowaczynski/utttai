@@ -133,6 +133,15 @@ class GameMenu extends React.PureComponent {
           <div className={joinClassNames('gamemenu-foreground', device)}>
             {this.renderThemeSwitch()}
             <span className="gamemenu-title">uttt.ai</span>
+            <span className="gamemenu-subtitle">
+              {'AlphaZero-like AI '}
+              <br className="br4"></br>
+              {'for playing '}
+              <br className="br2"></br>
+              {'Ultimate Tic-Tac-Toe '}
+              <br className="br4"></br>
+              {'in the browser'}
+            </span>
             <button className="gamemenu-button" onClick={this.handlePlayClick}>
               Play Human vs AI
             </button>
