@@ -73,7 +73,7 @@
   }
 
   &.mobile {
-    padding-top: 12px;
+    padding-top: 10px;
   }
 }
 
@@ -147,7 +147,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 256px;
+  width: 224px;
   min-height: 50px;
   margin: 6px;
   border: 1px solid var(--nav-button-border-color);
@@ -155,7 +155,7 @@
   outline-offset: 2px;
   background-color: var(--nav-button-bg-color);
   color: var(--nav-button-fg-color);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
@@ -356,12 +356,7 @@
   }
 
   .gamemenu-subtitle {
-    margin: 0 0 2px;
-  }
-
-  .gamemenu-button,
-  .gamemenu-nav-link {
-    margin: 12px 6px;
+    margin: 0;
   }
 
   .submenu-title {
@@ -394,11 +389,6 @@
 @media (max-width: 399px) {
   .gamemenu-subtitle {
     max-width: 85%;
-  }
-
-  .gamemenu-button,
-  .gamemenu-nav-link {
-    width: 224px;
   }
 
   .submenu-title {
@@ -449,6 +439,13 @@
   }
 }
 
+@media (max-width: 259px) {
+  .gamemenu-button,
+  .gamemenu-nav-link {
+    width: 160px;
+  }
+}
+
 @media (max-width: 239px) {
   .gamemenu-foreground .theme-switch-icon {
     display: none;
@@ -486,7 +483,7 @@
   }
 }
 
-@media (max-width: 239px) {
+@media (max-width: 199px) {
   .gamemenu-button,
   .gamemenu-nav-link {
     width: 140px;

@@ -259,7 +259,7 @@ class Blog extends React.Component {
                     uttt.ai gives the best position evaluation (state value and probability distribution over legal
                     moves) when the number of simulations is set to at least 1,000 or more.
                   </p>
-                  <p>{`Take a look at the evaluation for this position (click 'Control both sides' in the menu): `}</p>
+                  <p>{`Take a look at the evaluation for this position (choose 'Analysis' in the menu): `}</p>
                   <p>
                     <NavLink
                       className="link"

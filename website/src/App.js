@@ -437,24 +437,29 @@ class App extends React.Component {
   };
 
   initializeGameMenuSettings = () => {
+    const defaultGameMenuSettings = {
+      'playSubmenu': {
+        'numSimulations': 1,
+        'controlPlayerX': 'HUMAN_CONTROL',
+        'controlPlayerO': 'AI_CONTROL',
+        'autoSelection': 'ARGMAX',
+        'autoSelectionDurationSeconds': 1,
+      },
+      'analysisSubmenu': {
+        'numSimulations': isMobileDevice() ? 100 : 1000,
+      },
+    };
     let gameMenuSettings = getFromLocalStorage('gameMenuSettings');
     if (gameMenuSettings === null) {
-      gameMenuSettings = {
-        'playSubmenu': {
-          'numSimulations': 1,
-          'controlPlayerX': 'HUMAN_CONTROL',
-          'controlPlayerO': 'AI_CONTROL',
-          'autoSelection': 'ARGMAX',
-          'autoSelectionDurationSeconds': 1,
-        },
-        'controlSubmenu': {
-          'numSimulations': isMobileDevice() ? 100 : 1000,
-        },
-      };
+      gameMenuSettings = defaultGameMenuSettings;
     } else {
-      const submenuKeys = new Set(['playSubmenu', 'controlSubmenu']);
+      for (const submenuKey of Object.keys(defaultGameMenuSettings)) {
+        if (!(submenuKey in gameMenuSettings)) {
+          gameMenuSettings[submenuKey] = defaultGameMenuSettings[submenuKey];
+        }
+      }
       for (const submenuKey of Object.keys(gameMenuSettings)) {
-        if (!submenuKeys.has(submenuKey)) {
+        if (!(submenuKey in defaultGameMenuSettings)) {
           delete gameMenuSettings[submenuKey];
         }
       }

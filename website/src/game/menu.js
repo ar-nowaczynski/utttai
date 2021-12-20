@@ -23,9 +23,9 @@ class GameMenu extends React.PureComponent {
     updateGameMenuView('PLAY_SUBMENU');
   };
 
-  handleControlClick = () => {
+  handleAnalysisClick = () => {
     const { updateGameMenuView } = this.props;
-    updateGameMenuView('CONTROL_SUBMENU');
+    updateGameMenuView('ANALYSIS_SUBMENU');
   };
 
   handleBackClick = () => {
@@ -56,10 +56,10 @@ class GameMenu extends React.PureComponent {
     closeGameMenu(true);
   };
 
-  handleControlStartClick = () => {
+  handleAnalysisStartClick = () => {
     const { gameMenuSettings, updateSettings, closeGameMenu } = this.props;
     updateSettings({
-      numSimulations: gameMenuSettings['controlSubmenu']['numSimulations'],
+      numSimulations: gameMenuSettings['analysisSubmenu']['numSimulations'],
       controlPlayerX: 'HUMAN_CONTROL',
       controlPlayerO: 'HUMAN_CONTROL',
       disableEvaluationsX: false,
@@ -143,10 +143,10 @@ class GameMenu extends React.PureComponent {
               {'in the browser'}
             </span>
             <button className="gamemenu-button" onClick={this.handlePlayClick}>
-              Play Human vs AI
+              Play vs AI
             </button>
-            <button className="gamemenu-button" onClick={this.handleControlClick}>
-              Control both sides
+            <button className="gamemenu-button" onClick={this.handleAnalysisClick}>
+              Analysis
             </button>
             <NavLink className="gamemenu-nav-link" exact to="/rules">
               Rules
@@ -315,7 +315,7 @@ class GameMenu extends React.PureComponent {
           <div className={joinClassNames('submenu-foreground', device)}>
             {this.renderBackButton()}
             {this.renderThemeSwitch()}
-            <span className="submenu-title">Play Human vs AI</span>
+            <span className="submenu-title">Play vs AI</span>
             <div className="submenu-content">
               <div className="submenu-settings">
                 {this.renderPlayControlSettings()}
@@ -335,30 +335,30 @@ class GameMenu extends React.PureComponent {
     );
   }
 
-  renderControlNumSimulationsSettings() {
+  renderAnalysisNumSimulationsSettings() {
     const { device, gameMenuSettings } = this.props;
     return (
       <div className="num-simulations-settings">
-        <label htmlFor={`${device}controlnumsimulationsrange`}>
+        <label htmlFor={`${device}analysisnumsimulationsrange`}>
           <span>Num simulations:</span>
           <span className="num-simulations-settings-value">
-            {gameMenuSettings['controlSubmenu']['numSimulations'].toLocaleString('en-US')}
+            {gameMenuSettings['analysisSubmenu']['numSimulations'].toLocaleString('en-US')}
           </span>
         </label>
         <input
           type="range"
-          id={`${device}controlnumsimulationsrange`}
-          name={`${device}controlnumsimulationsrange`}
+          id={`${device}analysisnumsimulationsrange`}
+          name={`${device}analysisnumsimulationsrange`}
           min="0"
           max={getNumSimulationsRangeLength() - 1}
-          value={numSimulationsIndexOf(gameMenuSettings['controlSubmenu']['numSimulations'])}
-          onChange={(event) => this.handleNumSimulationsChange(event, 'controlSubmenu')}
+          value={numSimulationsIndexOf(gameMenuSettings['analysisSubmenu']['numSimulations'])}
+          onChange={(event) => this.handleNumSimulationsChange(event, 'analysisSubmenu')}
         ></input>
       </div>
     );
   }
 
-  renderControlSubmenu() {
+  renderAnalysisSubmenu() {
     const { device } = this.props;
     return (
       <div className={joinClassNames('submenu', device)}>
@@ -366,11 +366,11 @@ class GameMenu extends React.PureComponent {
           <div className={joinClassNames('submenu-foreground', device)}>
             {this.renderBackButton()}
             {this.renderThemeSwitch()}
-            <span className="submenu-title">Control both sides</span>
+            <span className="submenu-title">Analysis board</span>
             <div className="submenu-content">
-              <div className="submenu-settings">{this.renderControlNumSimulationsSettings()}</div>
+              <div className="submenu-settings">{this.renderAnalysisNumSimulationsSettings()}</div>
               <div className="submenu-buttons">
-                <button className="submenu-start-button" onClick={this.handleControlStartClick}>
+                <button className="submenu-start-button" onClick={this.handleAnalysisStartClick}>
                   Start
                 </button>
               </div>
@@ -390,8 +390,8 @@ class GameMenu extends React.PureComponent {
       return this.renderMainMenu();
     } else if (gameMenuView === 'PLAY_SUBMENU') {
       return this.renderPlaySubmenu();
-    } else if (gameMenuView === 'CONTROL_SUBMENU') {
-      return this.renderControlSubmenu();
+    } else if (gameMenuView === 'ANALYSIS_SUBMENU') {
+      return this.renderAnalysisSubmenu();
     }
   }
 }
