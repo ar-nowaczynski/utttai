@@ -217,17 +217,19 @@ export default class NeuralMonteCarloTreeSearch {
       updateLoadingStatus({ loading: true, progress: wasmLoadingProgress });
     }, 1000);
     try {
-      await InferenceSession.create('/init.onnx', {
+      const initResponse = await fetch('/init.onnx');
+      const initArrayBuffer = await initResponse.arrayBuffer();
+      await InferenceSession.create(initArrayBuffer, {
         executionProviders: ['wasm'],
       });
       clearTimeout(wasmLoadingProgressTimerID);
       if (env && env.wasm && env.wasm.simd) {
         const response = await fetch('/policy_value_net_stage2.onnx');
-        const contentLength = Number(response.headers.get('Content-Length'));
+        const contentLength = 19983650;
         let receivedLength = 0;
         const reader = response.body.getReader();
         const chunks = [];
-        while (receivedLength < contentLength) {
+        while (true) {
           const { value, done } = await reader.read();
           if (done) {
             break;
@@ -253,6 +255,7 @@ export default class NeuralMonteCarloTreeSearch {
         throw new NeuralMonteCarloTreeSearchError('ort-wasm-simd is not supported');
       }
     } catch (e) {
+      console.log(e);
       clearTimeout(wasmLoadingProgressTimerID);
       clearTimeout(showLoadingStatusTimerID);
       setTimeout(() => updateLoadingStatus({ error: true }), 1000);
