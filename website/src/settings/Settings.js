@@ -1,8 +1,6 @@
 import React from 'react';
 import { joinClassNames } from '../global/classnames';
 import { getNumSimulationsRangeLength, numSimulationsIndexOf, numSimulationsValueOf } from './helpers';
-import TriangleLeftIcon from '../images/triangle-left.svg';
-import TriangleRightIcon from '../images/triangle-right.svg';
 
 class Settings extends React.PureComponent {
   handleNumSimulationsChange = (event) => {
@@ -60,46 +58,6 @@ class Settings extends React.PureComponent {
     updateSettings({
       autoSelectionO: newAutoSelectionO,
     });
-  };
-
-  handleAutoSelectionXDurationDecrementClick = () => {
-    const { settings, updateSettings } = this.props;
-    const newAutoSelectionXDurationSeconds = settings['autoSelectionXDurationSeconds'] - 1;
-    if (newAutoSelectionXDurationSeconds >= 0) {
-      updateSettings({
-        autoSelectionXDurationSeconds: newAutoSelectionXDurationSeconds,
-      });
-    }
-  };
-
-  handleAutoSelectionXDurationIncrementClick = () => {
-    const { settings, updateSettings } = this.props;
-    const newAutoSelectionXDurationSeconds = settings['autoSelectionXDurationSeconds'] + 1;
-    if (newAutoSelectionXDurationSeconds <= 9) {
-      updateSettings({
-        autoSelectionXDurationSeconds: newAutoSelectionXDurationSeconds,
-      });
-    }
-  };
-
-  handleAutoSelectionODurationDecrementClick = () => {
-    const { settings, updateSettings } = this.props;
-    const newAutoSelectionODurationSeconds = settings['autoSelectionODurationSeconds'] - 1;
-    if (newAutoSelectionODurationSeconds >= 0) {
-      updateSettings({
-        autoSelectionODurationSeconds: newAutoSelectionODurationSeconds,
-      });
-    }
-  };
-
-  handleAutoSelectionODurationIncrementClick = () => {
-    const { settings, updateSettings } = this.props;
-    const newAutoSelectionODurationSeconds = settings['autoSelectionODurationSeconds'] + 1;
-    if (newAutoSelectionODurationSeconds <= 9) {
-      updateSettings({
-        autoSelectionODurationSeconds: newAutoSelectionODurationSeconds,
-      });
-    }
   };
 
   handleHideEvaluationsXChange = () => {
@@ -349,84 +307,6 @@ class Settings extends React.PureComponent {
     );
   }
 
-  renderAutoSelectionHighlightingX(aiControlChecked) {
-    const { settings } = this.props;
-    return (
-      <div className="auto-selection-highlighting">
-        <span className="auto-selection-text">Move highlighting:</span>
-        <div className="auto-selection-duration-settings">
-          <button
-            className="auto-selection-duration-button"
-            disabled={!aiControlChecked || settings['autoSelectionXDurationSeconds'] === 0}
-            onClick={this.handleAutoSelectionXDurationDecrementClick}
-          >
-            <TriangleLeftIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <input
-            type="number"
-            id="autoselectionxdurationseconds"
-            name="autoselectionxdurationseconds"
-            className="auto-selection-duration-number"
-            value={settings['autoSelectionXDurationSeconds']}
-            min="0"
-            max="9"
-            disabled={!aiControlChecked}
-            readOnly={true}
-          />
-          <button
-            className="auto-selection-duration-button"
-            disabled={!aiControlChecked || settings['autoSelectionXDurationSeconds'] === 9}
-            onClick={this.handleAutoSelectionXDurationIncrementClick}
-          >
-            <TriangleRightIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <label htmlFor="autoselectionxdurationseconds">
-            <span>seconds</span>
-          </label>
-        </div>
-      </div>
-    );
-  }
-
-  renderAutoSelectionHighlightingO(aiControlChecked) {
-    const { settings } = this.props;
-    return (
-      <div className="auto-selection-highlighting">
-        <span className="auto-selection-text">Move highlighting:</span>
-        <div className="auto-selection-duration-settings">
-          <button
-            className="auto-selection-duration-button"
-            disabled={!aiControlChecked || settings['autoSelectionODurationSeconds'] === 0}
-            onClick={this.handleAutoSelectionODurationDecrementClick}
-          >
-            <TriangleLeftIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <input
-            type="number"
-            id="autoselectionodurationseconds"
-            name="autoselectionodurationseconds"
-            className="auto-selection-duration-number"
-            value={settings['autoSelectionODurationSeconds']}
-            min="0"
-            max="9"
-            disabled={!aiControlChecked}
-            readOnly={true}
-          />
-          <button
-            className="auto-selection-duration-button"
-            disabled={!aiControlChecked || settings['autoSelectionODurationSeconds'] === 9}
-            onClick={this.handleAutoSelectionODurationIncrementClick}
-          >
-            <TriangleRightIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <label htmlFor="autoselectionodurationseconds">
-            <span>seconds</span>
-          </label>
-        </div>
-      </div>
-    );
-  }
-
   renderHideEvaluationsCheckboxX(aiControlChecked) {
     const { settings } = this.props;
     return (
@@ -479,7 +359,6 @@ class Settings extends React.PureComponent {
         {this.renderAIControlRadioX(aiControlChecked)}
         <div className={joinClassNames('ai-control-settings', !aiControlChecked ? 'disabled' : null)}>
           {this.renderAutoSelectionSettingsX(aiControlChecked)}
-          {this.renderAutoSelectionHighlightingX(aiControlChecked)}
           {this.renderHideEvaluationsCheckboxX(aiControlChecked)}
         </div>
       </fieldset>
@@ -500,7 +379,6 @@ class Settings extends React.PureComponent {
         {this.renderAIControlRadioO(aiControlChecked)}
         <div className={joinClassNames('ai-control-settings', !aiControlChecked ? 'disabled' : null)}>
           {this.renderAutoSelectionSettingsO(aiControlChecked)}
-          {this.renderAutoSelectionHighlightingO(aiControlChecked)}
           {this.renderHideEvaluationsCheckboxO(aiControlChecked)}
         </div>
       </fieldset>

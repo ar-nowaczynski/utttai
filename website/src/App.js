@@ -233,33 +233,27 @@ class App extends React.Component {
     if (Object.keys(evaluatedActionsGrouped).length === 0) {
       return;
     }
-    let controlPlayer, autoSelection, autoSelectionDurationSeconds;
+    let controlPlayer, autoSelection;
     if (uttt.isNextSymbolX()) {
       controlPlayer = settings['controlPlayerX'];
       autoSelection = settings['autoSelectionX'];
-      autoSelectionDurationSeconds = settings['autoSelectionXDurationSeconds'];
     } else {
       controlPlayer = settings['controlPlayerO'];
       autoSelection = settings['autoSelectionO'];
-      autoSelectionDurationSeconds = settings['autoSelectionODurationSeconds'];
     }
     if (controlPlayer === 'AI_CONTROL') {
       const index = selectIndex(evaluatedActionsGrouped, autoSelection);
       const newUttt = uttt.clone();
       const newAction = new Action(uttt.nextSymbol, index);
       newUttt.execute(newAction);
-      if (autoSelectionDurationSeconds > 0) {
-        const newEvaluatedActionsGrouped = deepCopy(evaluatedActionsGrouped);
-        const subgame = Math.floor(index / 9);
-        newEvaluatedActionsGrouped[subgame][index]['autoselected'] = true;
-        this.setState({ evaluatedActionsGrouped: newEvaluatedActionsGrouped });
-        this.nmcts.autoSelectionTimerId = setTimeout(() => {
-          this.updateGameline(newUttt, newAction);
-          this.nmcts.autoSelectionTimerId = null;
-        }, autoSelectionDurationSeconds * 1000);
-      } else {
+      const newEvaluatedActionsGrouped = deepCopy(evaluatedActionsGrouped);
+      const subgame = Math.floor(index / 9);
+      newEvaluatedActionsGrouped[subgame][index]['autoselected'] = true;
+      this.setState({ evaluatedActionsGrouped: newEvaluatedActionsGrouped });
+      this.nmcts.autoSelectionTimerId = setTimeout(() => {
         this.updateGameline(newUttt, newAction);
-      }
+        this.nmcts.autoSelectionTimerId = null;
+      }, 1000);
     }
   };
 
@@ -307,27 +301,37 @@ class App extends React.Component {
   };
 
   initializeSettings = () => {
+    const defaultSettings = {
+      'numSimulations': isMobileDevice() ? 100 : 1000,
+      'explorationStrength': 2.0,
+      'controlPlayerX': 'HUMAN_CONTROL',
+      'controlPlayerO': 'HUMAN_CONTROL',
+      'disableEvaluationsX': false,
+      'disableEvaluationsO': false,
+      'autoSelectionX': 'ARGMAX',
+      'autoSelectionO': 'ARGMAX',
+      'hideEvaluationsX': false,
+      'hideEvaluationsO': false,
+      'colorTheme': 'LIGHT',
+      'boardSize': 'DEFAULT',
+    };
     let settings = getFromLocalStorage('settings');
     if (settings === null) {
-      settings = {
-        'numSimulations': isMobileDevice() ? 100 : 1000,
-        'explorationStrength': 2.0,
-        'controlPlayerX': 'HUMAN_CONTROL',
-        'controlPlayerO': 'HUMAN_CONTROL',
-        'disableEvaluationsX': false,
-        'disableEvaluationsO': false,
-        'autoSelectionX': 'ARGMAX',
-        'autoSelectionO': 'ARGMAX',
-        'autoSelectionXDurationSeconds': 1,
-        'autoSelectionODurationSeconds': 1,
-        'hideEvaluationsX': false,
-        'hideEvaluationsO': false,
-        'colorTheme': 'LIGHT',
-        'boardSize': 'DEFAULT',
-      };
-      setToLocalStorage('settings', settings);
+      settings = defaultSettings;
+    } else {
+      for (const settingsKey of Object.keys(defaultSettings)) {
+        if (!(settingsKey in settings)) {
+          settings[settingsKey] = defaultSettings[settingsKey];
+        }
+      }
+      for (const settingsKey of Object.keys(settings)) {
+        if (!(settingsKey in defaultSettings)) {
+          delete settings[settingsKey];
+        }
+      }
     }
     this.setAppColorTheme(settings['colorTheme']);
+    setToLocalStorage('settings', settings);
     return settings;
   };
 
@@ -443,7 +447,6 @@ class App extends React.Component {
         'controlPlayerX': 'HUMAN_CONTROL',
         'controlPlayerO': 'AI_CONTROL',
         'autoSelection': 'ARGMAX',
-        'autoSelectionDurationSeconds': 1,
       },
       'analysisSubmenu': {
         'numSimulations': isMobileDevice() ? 100 : 1000,
@@ -461,6 +464,18 @@ class App extends React.Component {
       for (const submenuKey of Object.keys(gameMenuSettings)) {
         if (!(submenuKey in defaultGameMenuSettings)) {
           delete gameMenuSettings[submenuKey];
+        }
+      }
+      for (const submenuKey of Object.keys(gameMenuSettings)) {
+        for (const settingsKey of Object.keys(defaultGameMenuSettings[submenuKey])) {
+          if (!(settingsKey in gameMenuSettings[submenuKey])) {
+            gameMenuSettings[submenuKey][settingsKey] = defaultGameMenuSettings[submenuKey][settingsKey];
+          }
+        }
+        for (const settingsKey of Object.keys(gameMenuSettings[submenuKey])) {
+          if (!(settingsKey in defaultGameMenuSettings[submenuKey])) {
+            delete gameMenuSettings[submenuKey][settingsKey];
+          }
         }
       }
     }

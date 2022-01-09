@@ -6,8 +6,6 @@ import ThemeSwitchIcon from '../images/theme-switch.svg';
 import UndoArrowIcon from '../images/undo-arrow.svg';
 import HumanPlayerIcon from '../images/human-player.svg';
 import AIPlayerIcon from '../images/ai-player.svg';
-import TriangleLeftIcon from '../images/triangle-left.svg';
-import TriangleRightIcon from '../images/triangle-right.svg';
 
 class GameMenu extends React.PureComponent {
   handleThemeSwitchClick = () => {
@@ -42,14 +40,12 @@ class GameMenu extends React.PureComponent {
       newSettings['controlPlayerO'] = 'AI_CONTROL';
       newSettings['disableEvaluationsX'] = true;
       newSettings['autoSelectionO'] = gameMenuSettings['playSubmenu']['autoSelection'];
-      newSettings['autoSelectionODurationSeconds'] = gameMenuSettings['playSubmenu']['autoSelectionDurationSeconds'];
       newSettings['hideEvaluationsO'] = true;
     } else {
       newSettings['controlPlayerX'] = 'AI_CONTROL';
       newSettings['controlPlayerO'] = 'HUMAN_CONTROL';
       newSettings['disableEvaluationsO'] = true;
       newSettings['autoSelectionX'] = gameMenuSettings['playSubmenu']['autoSelection'];
-      newSettings['autoSelectionXDurationSeconds'] = gameMenuSettings['playSubmenu']['autoSelectionDurationSeconds'];
       newSettings['hideEvaluationsX'] = true;
     }
     updateSettings(newSettings);
@@ -91,26 +87,6 @@ class GameMenu extends React.PureComponent {
     updateGameMenuSettings(submenuKey, {
       autoSelection: newAutoSelection,
     });
-  };
-
-  handleAutoSelectionDurationDecrementClick = (submenuKey) => {
-    const { gameMenuSettings, updateGameMenuSettings } = this.props;
-    const newAutoSelectionDurationSeconds = gameMenuSettings[submenuKey]['autoSelectionDurationSeconds'] - 1;
-    if (newAutoSelectionDurationSeconds >= 0) {
-      updateGameMenuSettings(submenuKey, {
-        autoSelectionDurationSeconds: newAutoSelectionDurationSeconds,
-      });
-    }
-  };
-
-  handleAutoSelectionDurationIncrementClick = (submenuKey) => {
-    const { gameMenuSettings, updateGameMenuSettings } = this.props;
-    const newAutoSelectionDurationSeconds = gameMenuSettings[submenuKey]['autoSelectionDurationSeconds'] + 1;
-    if (newAutoSelectionDurationSeconds <= 9) {
-      updateGameMenuSettings(submenuKey, {
-        autoSelectionDurationSeconds: newAutoSelectionDurationSeconds,
-      });
-    }
   };
 
   renderThemeSwitch = () => {
@@ -269,44 +245,6 @@ class GameMenu extends React.PureComponent {
     );
   }
 
-  renderPlayAutoSelectionHighlighting() {
-    const { device, gameMenuSettings } = this.props;
-    return (
-      <div className="auto-selection-highlighting">
-        <span className="auto-selection-text">AI move highlighting:</span>
-        <div className="auto-selection-duration-settings">
-          <button
-            className="auto-selection-duration-button"
-            disabled={gameMenuSettings['playSubmenu']['autoSelectionDurationSeconds'] === 0}
-            onClick={() => this.handleAutoSelectionDurationDecrementClick('playSubmenu')}
-          >
-            <TriangleLeftIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <input
-            type="number"
-            id={`${device}playautoselectiondurationseconds`}
-            name={`${device}playautoselectiondurationseconds`}
-            className="auto-selection-duration-number"
-            value={gameMenuSettings['playSubmenu']['autoSelectionDurationSeconds']}
-            min="0"
-            max="9"
-            readOnly={true}
-          />
-          <button
-            className="auto-selection-duration-button"
-            disabled={gameMenuSettings['playSubmenu']['autoSelectionDurationSeconds'] === 9}
-            onClick={() => this.handleAutoSelectionDurationIncrementClick('playSubmenu')}
-          >
-            <TriangleRightIcon className="auto-selection-duration-button-icon" />
-          </button>
-          <label htmlFor={`${device}playautoselectiondurationseconds`}>
-            <span>seconds</span>
-          </label>
-        </div>
-      </div>
-    );
-  }
-
   renderPlaySubmenu() {
     const { device } = this.props;
     return (
@@ -321,7 +259,6 @@ class GameMenu extends React.PureComponent {
                 {this.renderPlayControlSettings()}
                 {this.renderPlayNumSimulationsSettings()}
                 {this.renderPlayAutoSelectionSettings()}
-                {this.renderPlayAutoSelectionHighlighting()}
               </div>
               <div className="submenu-buttons">
                 <button className="submenu-start-button" onClick={this.handlePlayStartClick}>
