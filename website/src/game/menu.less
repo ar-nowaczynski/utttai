@@ -78,6 +78,10 @@
 }
 
 .submenu-foreground {
+  &.desktop {
+    padding-bottom: 24px;
+  }
+
   &.mobile {
     padding-top: 16px;
   }
@@ -132,7 +136,7 @@
 
 .gamemenu-subtitle {
   max-width: 320px;
-  margin: 4px 0;
+  margin: 4px 0 6px;
   font-size: 20px;
   line-height: 1.5;
 
@@ -299,6 +303,10 @@
   }
 }
 
+.submenu-foreground.desktop .submenu-settings .control-settings {
+  margin-top: -14px;
+}
+
 .submenu-buttons {
   display: flex;
   flex-direction: row;
@@ -369,6 +377,72 @@
 
   .submenu-buttons {
     margin-top: 24px;
+  }
+}
+
+@media (max-height: @MAX_HEIGHT_MOBILE_SIZE_60) {
+  .gamemenu-foreground.desktop,
+  .submenu-foreground.desktop {
+    width: 450px;
+    height: 450px;
+  }
+
+  .gamemenu-foreground.desktop {
+    padding-top: 28px;
+
+    .gamemenu-button,
+    .gamemenu-nav-link {
+      width: 216px;
+      min-height: 48px;
+    }
+
+    .gamemenu-subtitle {
+      margin: 3px 0 5px;
+    }
+  }
+}
+
+@media (max-height: @MAX_HEIGHT_MOBILE_SIZE_56) {
+  .gamemenu-foreground.desktop,
+  .submenu-foreground.desktop {
+    width: 432px;
+    height: 432px;
+  }
+
+  .gamemenu-foreground.desktop {
+    padding-top: 30px;
+
+    .gamemenu-button,
+    .gamemenu-nav-link {
+      width: 200px;
+      min-height: 44px;
+    }
+
+    .gamemenu-subtitle {
+      margin: 2px 0 4px;
+    }
+  }
+}
+
+@media (max-height: @MAX_HEIGHT_MOBILE_SIZE_52) {
+  .gamemenu-foreground.desktop,
+  .submenu-foreground.desktop {
+    width: 410px;
+    height: 410px;
+  }
+
+  .gamemenu-foreground.desktop {
+    padding-top: 30px;
+
+    .gamemenu-button,
+    .gamemenu-nav-link {
+      width: 188px;
+      min-height: 42px;
+    }
+
+    .gamemenu-subtitle {
+      margin: 0 0 2px;
+    }
   }
 }
 
