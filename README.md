@@ -101,8 +101,8 @@ This project was developed using:
 - 2x NVIDIA GeForce RTX 2080 Ti (CUDA 11)
 - Intel i7-10700K (8 cores x 3.80GHz)
 - PyTorch >= 1.8
-- Node.js 14.18.1
-- npm 8.1.1
+- Node.js 14.18.2
+- npm 8.3.0
 - React 17.0.2
 - g++ 9.3.0
 
