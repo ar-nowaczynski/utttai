@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Union
 
 import torch
 import torch.nn as nn
@@ -8,7 +8,7 @@ from utttpy.selfplay.policy_value_loss import policy_value_loss_function
 
 class PolicyValueNetwork(nn.Module):
 
-    def __init__(self, in_channels: int = 4, num_planes: int = 256):
+    def __init__(self, in_channels: int = 4, num_planes: int = 256, onnx_export: bool = False):
         super(PolicyValueNetwork, self).__init__()
 
         # encoder
@@ -66,12 +66,13 @@ class PolicyValueNetwork(nn.Module):
             nn.ELU(),
             nn.Conv2d(128, 1, kernel_size=1, stride=1, padding=0, bias=True),
         )
-        self.policy_head_values = nn.Sequential(
-            nn.Conv2d(in_channels + num_planes, 128, kernel_size=1, stride=1, padding=0, bias=True),
-            nn.ELU(),
-            nn.Conv2d(128, 1, kernel_size=1, stride=1, padding=0, bias=True),
-            nn.Tanh(),
-        )
+        if not onnx_export:
+            self.policy_head_values = nn.Sequential(
+                nn.Conv2d(in_channels + num_planes, 128, kernel_size=1, stride=1, padding=0, bias=True),
+                nn.ELU(),
+                nn.Conv2d(128, 1, kernel_size=1, stride=1, padding=0, bias=True),
+                nn.Tanh(),
+            )
 
         # value head
         self.value_head_conv1 = nn.Sequential(
@@ -95,8 +96,14 @@ class PolicyValueNetwork(nn.Module):
 
         self.in_channels = in_channels
         self.num_planes = num_planes
+        self.onnx_export = onnx_export
 
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    def forward(
+        self, x: torch.Tensor
+    ) -> Union[
+        Tuple[torch.Tensor, torch.Tensor, torch.Tensor],
+        Tuple[torch.Tensor, torch.Tensor],
+    ]:
         batch_size = x.size(0)
 
         x1 = self.conv_block_1(x)
@@ -110,10 +117,11 @@ class PolicyValueNetwork(nn.Module):
         p = self.policy_head_upsampling(p)
         p = torch.cat([x, p], dim=1)
         pl = self.policy_head_logits(p)
-        av = self.policy_head_values(p)
         pl = pl.clamp(-32, 32)
         pl = pl.squeeze(1)
-        av = av.squeeze(1)
+        if not self.onnx_export:
+            av = self.policy_head_values(p)
+            av = av.squeeze(1)
 
         v1 = self.value_head_conv1(x2).view(batch_size, self.num_planes)
         v2 = self.value_head_conv2(x3).view(batch_size, self.num_planes)
@@ -121,8 +129,12 @@ class PolicyValueNetwork(nn.Module):
         sv = self.value_head_fc(v)
         sv = sv.squeeze(1)
 
-        # policy_logits, action_values, state_value
-        return pl, av, sv
+        if not self.onnx_export:
+            # policy_logits, action_values, state_value
+            return pl, av, sv
+        else:
+            # policy_logits, state_value
+            return pl, sv
 
     def forward_loss(
         self,

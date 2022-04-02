@@ -12,7 +12,7 @@ import torch.nn as nn
 
 from utttpy.game.helpers import get_state_ndarray_4x9x9
 from utttpy.game.ultimate_tic_tac_toe import UltimateTicTacToe
-from utttpy.selfplay.policy_value_network_onnx import PolicyValueNetwork
+from utttpy.selfplay.policy_value_network import PolicyValueNetwork
 
 
 def run_argparse() -> argparse.Namespace:
@@ -24,11 +24,13 @@ def run_argparse() -> argparse.Namespace:
 
 
 def load_policy_value_net(state_dict_path: pathlib.Path, device: torch.device) -> nn.Module:
-    policy_value_net = PolicyValueNetwork()
+    policy_value_net = PolicyValueNetwork(onnx_export=True)
     policy_value_net.to(device=device)
     state_dict = torch.load(state_dict_path, map_location=device)
-    for key in PolicyValueNetwork.DELETED_PARAMETERS:
-        del state_dict[key]
+    policy_value_net_keys = set(policy_value_net.state_dict().keys())
+    for key in list(state_dict.keys()):
+        if key not in policy_value_net_keys:
+            del state_dict[key]
     policy_value_net.load_state_dict(state_dict)
     policy_value_net.eval()
     return policy_value_net
