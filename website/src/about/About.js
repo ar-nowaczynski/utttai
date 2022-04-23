@@ -70,8 +70,8 @@ class About extends React.Component {
           <div>The AI's self-play training took about 10 weeks on my desktop PC to complete.</div>
           <div>
             {'Source code: '}
-            <a className="link" href="https://github.com/ar-nowaczynski/uttt">
-              https://github.com/ar-nowaczynski/uttt
+            <a className="link" href="https://github.com/ar-nowaczynski/utttai">
+              https://github.com/ar-nowaczynski/utttai
             </a>
             .
           </div>

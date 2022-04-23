@@ -50,8 +50,8 @@ class Blog extends React.Component {
               </p>
               <p>
                 {'Source code: '}
-                <a className="link" href="https://github.com/ar-nowaczynski/uttt">
-                  https://github.com/ar-nowaczynski/uttt
+                <a className="link" href="https://github.com/ar-nowaczynski/utttai">
+                  https://github.com/ar-nowaczynski/utttai
                 </a>
                 .
               </p>
@@ -148,7 +148,7 @@ class Blog extends React.Component {
                   <li>
                     Much smaller Policy-Value Network (PVN) architecture designed specifically for playing Ultimate
                     Tic-Tac-Toe in the browser with only 5 million parameters (20 MB):{' '}
-                    <a href="https://github.com/ar-nowaczynski/uttt/blob/main/utttpy/selfplay/policy_value_network.py">
+                    <a href="https://github.com/ar-nowaczynski/utttai/blob/main/utttpy/selfplay/policy_value_network.py">
                       source code
                     </a>
                     .
@@ -251,7 +251,7 @@ class Blog extends React.Component {
                   uttt.ai works best on desktops and gaming laptops. On my desktop PC: 75 simulations / sec, on my
                   laptop: 70 sims/sec, on my phone 2.5 sim/sec. However, single threaded C++ inference that uses GPU
                   offers up to 700 simulations / sec ({`if you're interested to run it, see the `}
-                  <a href="https://github.com/ar-nowaczynski/uttt">source code</a>
+                  <a href="https://github.com/ar-nowaczynski/utttai">source code</a>
                   ).
                 </li>
                 <li>
